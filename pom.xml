@@ -123,7 +123,6 @@
 					<!-- https://mvnrepository.com/artifact/mysql/mysql-connector-java
            配置这个依赖主要是为了等下在配置MG的时候可以不用配置classPathEntry这样的一个属性，避免
            代码的耦合度太高 -->
-					<!-- https://mvnrepository.com/artifact/mysql/mysql-connector-java -->
 					<dependency>
 						<groupId>mysql</groupId>
 						<artifactId>mysql-connector-java</artifactId>
