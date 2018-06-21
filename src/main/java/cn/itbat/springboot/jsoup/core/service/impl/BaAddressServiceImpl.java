@@ -12,6 +12,8 @@ import org.springframework.stereotype.Service;
 
 import javax.annotation.Resource;
 import java.io.IOException;
+import java.net.InetSocketAddress;
+import java.net.Proxy;
 import java.util.HashMap;
 import java.util.Map;
 import java.util.Objects;
@@ -186,7 +188,11 @@ public class BaAddressServiceImpl implements BaAddressService {
             throw new IllegalArgumentException("The input url('" + url + "') is invalid!");
         }
         try {
-            return Jsoup.connect(url).timeout(100 * 1000).get();
+            Proxy proxy = new Proxy(Proxy.Type.HTTP, new InetSocketAddress("49.69.89.59", 61234));
+            return Jsoup.connect(url).timeout(100 * 1000)
+                    .userAgent("Mozilla/5.0 (Windows NT 10.0; WOW64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/67.0.3396.87 Safari/537.36")
+                    .proxy(proxy)
+                    .get();
         } catch (IOException e) {
             e.printStackTrace();
             return null;
@@ -206,6 +212,6 @@ public class BaAddressServiceImpl implements BaAddressService {
         baAddress.setAddressName(name);
         baAddress.setLevel(level);
         baAddress.setParentCode(upperLevel);
-        baAddressMapper.insertSelective(baAddress);
+//        baAddressMapper.insertSelective(baAddress);
     }
 }
